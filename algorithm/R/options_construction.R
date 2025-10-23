@@ -187,9 +187,9 @@ library(jsonlite)
 #interval options
 {
   options$intervals$non_overlap_duration = 1e-5
-  options$intervals$index_column_name = "SOFA_N"
-  options$intervals$interval_start_name = "SOFA_start"
-  options$intervals$interval_end_name = "SOFA_end"
+  options$intervals$index_column_name = "sofa_n"
+  options$intervals$interval_start_name = "sofa_aggregation_start"
+  options$intervals$interval_end_name = "sofa_time"
 }
 
 

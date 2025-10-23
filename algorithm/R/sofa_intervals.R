@@ -35,19 +35,31 @@ make_intervals = function(data,
                           time_columns = NULL,
                           slide_duration = NULL,
                           min_interval_duration = NULL,
-                          start_interval_duration = 0){
-  # if(FALSE){
-  #   data = copy(demo)[PatientID == 18733, .(PatientID, AdmissionTime, DischargeTime)]
-  #   type = "sliding"
-  #   interval_length = 3600*24
-  #   start_interval_duration = 0
-  #   interval_breakpoints = NULL
-  #   slide_duration = 3600*2
-  #   min_interval_duration = 5*3600
-  #   #interval_breakpoints = c("08:00:00", "12:00:00", "20:00:00")
-  #   #interval_breakpoints = c("09:00:00")
-  #   time_columns = NULL
-  # }
+                          start_interval_before = 3600*24,
+                          start_interval_after = 0,
+                          max_aggregate_before = 24*3600){
+  
+  
+
+  
+  if(FALSE){
+    #data = copy(demo)[PatientID == 18733, .(PatientID, AdmissionTime, DischargeTime)]
+    data = copy(intdt)
+    type = "sliding"
+    interval_length = 24*3600
+    start_interval_before = 3600*24
+    start_interval_after = 0
+    interval_breakpoints = NULL
+    slide_duration = 3600*2
+    min_interval_duration = 1*3600
+    max_aggregate_before = 24*3600
+    #interval_breakpoints = c("08:00:00", "12:00:00", "20:00:00")
+    #interval_breakpoints = c("09:00:00")
+    time_columns = NULL
+  }
+  
+  start_interval_before = min(start_interval_before, max_aggregate_before)
+  start_interval_duration = start_interval_before + start_interval_after
   
 
   
@@ -101,8 +113,8 @@ make_intervals = function(data,
   if (start_interval_duration >0){
     startintervals = copy(y[, c(key(y), time_columns), with = FALSE])
     startintervals[, (index_column_name) := 0]
-    startintervals[, (interval_start_name) := .SD[[time_columns[1]]] - start_interval_duration / 2]
-    startintervals[, (interval_end_name) := pmin(.SD[[time_columns[1]]] + start_interval_duration / 2, .SD[[time_columns[2]]])]
+    startintervals[, (interval_start_name) := .SD[[time_columns[1]]] - min(start_interval_before, max_aggregate_before)]
+    startintervals[, (interval_end_name) := pmin(.SD[[time_columns[1]]] + start_interval_after, .SD[[time_columns[2]]])]
     y[, (time_columns[1]) := startintervals[[interval_end_name]]]
   }
   
@@ -118,6 +130,8 @@ make_intervals = function(data,
     y[, (interval_start_name) := .SD[[time_columns[1]]] + (IntervalN -1 ) * interval_length]
     y[, (interval_end_name) := pmin(.SD[[time_columns[1]]] + (IntervalN) * interval_length,.SD[[time_columns[2]]])]
     colnames(y)[colnames(y) == "IntervalN"] = index_column_name
+    
+
   }
   
   if (type == "sliding"){
@@ -129,9 +143,19 @@ make_intervals = function(data,
     #remove intervals of length 0
     y = y[y[[time_columns[1]]] < y[[time_columns[[2]]]]]
     
-    
-    y[, (interval_start_name) := pmax(pmin(.SD[[time_columns[1]]] + (IntervalN) * slide_duration, .SD[[time_columns[2]]]) - interval_length,.SD[[time_columns[1]]])]
+    #first compute the end time
     y[, (interval_end_name) := pmin(.SD[[time_columns[1]]] + (IntervalN) * slide_duration,.SD[[time_columns[2]]])]
+    #then it's trivial to compute the start...
+    y[, (interval_start_name) := pmax(.SD[[interval_end_name]] - interval_length, .SD[[time_columns[1]]] - max_aggregate_before)]
+
+    # y[, (interval_start_name) := pmax(pmin(.SD[[time_columns[1]]] + (IntervalN) * slide_duration, 
+    #                                        .SD[[time_columns[2]]]) - interval_length,
+    #                                   .SD[[time_columns[1]]] - max_aggregate_before
+    #                                   )
+    #   ]
+    # y[, (interval_end_name) := pmin(.SD[[time_columns[1]]] + (IntervalN) * slide_duration,.SD[[time_columns[2]]])]
+    # 
+    
     if(!is.null(min_interval_duration)){
       y = y[which(y[[interval_end_name]] - y[[interval_start_name]] > as.difftime(min_interval_duration, units = "secs"))]
       y[, IntervalN := 1+IntervalN - min(IntervalN), c(key(data))]
@@ -140,6 +164,9 @@ make_intervals = function(data,
     #y[, (interval_start_name) := pmax(.SD[[time_columns[1]]] + (IntervalN) * slide_duration - interval_length],.SD[[time_columns[1]]])]   
     #y[, (interval_end_name) := pmin(.SD[[time_columns[1]]] + (IntervalN -1 ) * slide_duration + interval_length,.SD[[time_columns[2]]])]
     colnames(y)[colnames(y) == "IntervalN"] = index_column_name
+    setcolorder(y, c(key(data), time_columns, c(index_column_name, interval_start_name, interval_end_name)))
+    #c(key(y), timecols, c(index_column_name, interval_start_name, interval_end_name))
+    
   }
   
   if (type == "absolute"){
