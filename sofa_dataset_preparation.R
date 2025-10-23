@@ -47,6 +47,17 @@ sofadt = sofadt[, .SD[which.min(dtdiff)], .(PatientID, icu_hour)]
 sofadt[, `:=`(dt = NULL,
               dtdiff = NULL)]
 
+master_datapath = "P:\\GLUC-ICU\\data\\raw\\2022-11\\SIR_Masterfile_221108.xlsx"
+library(readxl)
+master = read_excel(master_datapath)
+setDT(master)
+sofadt2 = merge(sofadt, unique(master[, .(PatientID, StudyID)]), "PatientID", all.x = TRUE)
+
+setcolorder(sofadt2, c("StudyID", "PatientID"))
+
+setkey(sofadt2, StudyID, PatientID, sofa_time)
+fwrite(sofadt2, file.choose())
+
 
 #get the outcomes too
 master_datapath = "P:\\GLUC-ICU\\users\\navid\\HMT data\\data\\csv\\Demographics_January2025.csv"
@@ -64,3 +75,6 @@ sofadt[, time_to_death := as.numeric(deathdate - adm_time, units = "days")]
 sofadt[, death_at_30 := 0L]
 sofadt[time_to_death <=30, death_at_30 := 1L]
 sofadt[, deathdate := NULL]
+
+#compute the max
+sofadt[, sofa_max := max(sofa), PatientID]
