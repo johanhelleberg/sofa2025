@@ -47,6 +47,11 @@ setkey(m2, StudyID, SpellNumber, InskrTidpunkt, UtskrTidpunkt)
 
 #now, m2 is the master dataset that contains the spells and patientIDs, this will be needed later on
 #in the SOFA compute to link PatientID data to spells
+#generate a unique ID for the spell, can be useful later on
+spellmaster_key = copy(m2)[, .(StudyID, SpellNumber, PatientID, VtfHuvudId, SpellID = as.integer(StudyID * 1000 + SpellNumber))][, lapply(.SD, as.integer)]
+#add the times per part of the spell
+spellmaster_key = cbind(spellmaster_key, m2[, .(AdmissionTime = InskrTidpunkt, DischargeTime = UtskrTidpunkt)])
+fwrite(spellmaster_key[, lapply(.SD, as.character)], file.choose())
 
 #it's a rare opportunity when 'spell_master' is a suitable variable name
 #it simply can't go to waste
@@ -367,4 +372,4 @@ t1 = table1(~Age +
             )
 
 t1
-
+fwrite(spell_master, file.choose())

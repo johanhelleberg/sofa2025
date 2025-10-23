@@ -1,0 +1,35 @@
+CREATE TABLE pharma_compounds(
+CompID INTEGER PRIMARY KEY NOT NULL,
+CompName TEXT) WITHOUT ROWID;
+
+CREATE TABLE pharma_names(
+PharmaID INTEGER PRIMARY KEY NOT NULL,
+PharmaName TEXT,
+Unit TEXT,
+PharmaType INTEGER) WITHOUT ROWID;
+
+CREATE TABLE pharma_tmp(
+	PatientID INTEGER, 
+	PharmaID INTEGER, 
+	DateTime REAL, 
+	CompID INTEGER, 
+	GivenDose REAL, 
+	CumulDose REAL, 
+	Rate REAL, 
+	OrderNumber INTEGER
+);
+
+CREATE TABLE pharma(
+	PatientID INTEGER NOT NULL,
+	CompID INTEGER NOT NULL,	
+	PharmaID INTEGER NOT NULL,	
+	OrderNumber INTEGER NOT NULL,
+	DateTime REAL NOT NULL, 
+	RowNumber INTEGER NOT NULL, 
+	GivenDose REAL,
+	Rate REAL,
+	PRIMARY KEY (CompID, PatientID, PharmaID, OrderNumber, DateTime, RowNumber),
+	FOREIGN KEY (PatientID) REFERENCES patients(PatientID) ON UPDATE CASCADE ON DELETE SET NULL,
+	FOREIGN KEY (PharmaID) REFERENCES pharma_names(PharmaID) ON UPDATE CASCADE ON DELETE SET NULL,
+	FOREIGN KEY (CompID) REFERENCES pharma_compounds(CompID) ON UPDATE CASCADE ON DELETE SET NULL
+) WITHOUT ROWID;

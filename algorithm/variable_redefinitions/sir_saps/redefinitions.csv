@@ -1,0 +1,53 @@
+﻿OldColName;NewColName;OldValue;NewValue
+Kardiovaskulär;Cardiovascular;Ingen kardiovaskulär orsak;No cardiovascular reason
+Kardiovaskulär;Cardiovascular;Septisk chock;Septic shock
+Kardiovaskulär;Cardiovascular;Hjärtstopp;Cardiac arrest
+Kardiovaskulär;Cardiovascular;Annan kardiovaskulär orsak;Other cardiovascular reason
+Kardiovaskulär;Cardiovascular;Hypovolem, hemorragisk chock;Hypovolemic hemorrhagic shock
+Kardiovaskulär;Cardiovascular;Blandad eller odefinierad chock;Undefined shock
+Kardiovaskulär;Cardiovascular;Kardiovaskulär svikt utan chock;Cardiovascular failure without shock
+Kardiovaskulär;Cardiovascular;Hypovolem, icke-hemorragisk chock;Hypovolemic non-hemorrhagic shock
+Kardiovaskulär;Cardiovascular;Arytmi;Arrythmia
+Kardiovaskulär;Cardiovascular;Kardiogen chock;Cardiogenic shock
+Kardiovaskulär;Cardiovascular;Hypertensiv kris;Hypertensive crisis
+Kardiovaskulär;Cardiovascular;Anafylaktisk chock;Anaphylactic shock
+Kardiovaskulär;Cardiovascular;Bröstsmärta;Chest pain
+Lever;Hepatic;Ingen hepatisk orsak;No hepatic reason
+Lever;Hepatic;Annan hepatisk orsak;Other hepatic reason
+Lever;Hepatic;Leversvikt;Hepatic failure
+Gastrointestinal;Gastrointestinal;Ingen gastrointestinal orsak;No gastrointestinal reason
+Gastrointestinal;Gastrointestinal;Annan gastrointestinal orsak;Other gastrointestinal reason
+Gastrointestinal;Gastrointestinal;Akut buk;Acute abdomen
+Gastrointestinal;Gastrointestinal;Gastrointestinal blödning;Gastrointestinal hemorrhage
+Gastrointestinal;Gastrointestinal;Pankreatit;Pancreatitis
+Neurologiska;Neurologic;Ingen neurologisk orsak;No neurologic reason
+Neurologiska;Neurologic;Medvetandestörning (från koma till delirium);Coma or stupor or vigilance disturbances
+Neurologiska;Neurologic;Intrakraniell volymseffekt;Intracranial mass effect
+Neurologiska;Neurologic;Annan neurologisk orsak;Other neurologic reason
+Neurologiska;Neurologic;Kramper;Seizures
+Neurologiska;Neurologic;Fokalt neurologiskt bortfall;Focal neurologic deficit
+Renala;Renal;Ingen renal orsak;No renal reason
+Renala;Renal;Njursvikt;Renal failure
+Renala;Renal;Prerenal njursvikt;Prerenal renal failure
+Renala;Renal;Annan renal orsak;Other renal reason
+Renala;Renal;Postrenal njursvikt;Postrenal renal failure
+Respiratoriska;Respiratory;Ingen respiratorisk orsak;No respiratory reason
+Respiratoriska;Respiratory;Annan respiratorisk orsak;Other respiratory reason
+Respiratoriska;Respiratory;Akut lungsvikt, ARDS;Acute respiratory failure or ARDS
+Respiratoriska;Respiratory;Akut lungsvikt på kronisk lungsvikt;Acute on chronic respiratory failure
+Hematologiska;Hematologic;Ingen hematologisk orsak;No hematologic reason
+Hematologiska;Hematologic;Annan hematologisk orsak;Other hematologic reason
+Hematologiska;Hematologic;Blödningsrubbning, DIC;Bleeding disturbance or DIC
+Hematologiska;Hematologic;Svår hemolys;Severe hemolysis
+Metaboliska;Metabolic;Ingen metabol orsak;No metabolic reason
+Metaboliska;Metabolic;Syra-bas och/eller elektrolytrubbning;Acid-base or electrolyte disturbance
+Metaboliska;Metabolic;Annan metabol orsak;Other metabolic reason
+Metaboliska;Metabolic;Hypo-, hyperglykemi;Hypo- or hyperglycemia
+Metaboliska;Metabolic;Hypo-, hypertermi;Hypo- or hyperthermia
+Operationstyp;TypeOfSurgery;Ingen kirurgi;No Surgery
+Operationstyp;TypeOfSurgery;Övrig kirurgi;Other Surgery
+Operationstyp;TypeOfSurgery;Neurokirurgi: Cerebrovaskulär kirurgi;Neurosurgery
+Operationstyp;TypeOfSurgery;Transplantation: Lever, njure, pankreas, njure och pankreas, övriga;Transplantation
+Operationstyp;TypeOfSurgery;Multipelt trauma;Multiple Trauma
+Operationstyp;TypeOfSurgery;Isolerat trauma (inkluderar bröstkorg, bukhåla, extremiteter);Isolated Trauma
+Operationstyp;TypeOfSurgery;Hjärtkirurgi: CABG utan klaffkirurgi;Cardiac Surgery

@@ -1,0 +1,171 @@
+VariableID;Abbreviation;Description;Min;Max;Source;Include;Aggregation
+20002600;P-ALAT;ALAT;0,1;450;Ownwork;1;max
+24000340;P-Albumin;Albumin;5;60;Ownwork;1;min
+24000539;aB-An-Gap c;Anion gap Art;-50;50;Ownwork;1;max
+24000600;vB-Anion Gap;Anion gap Ven;-50;50;Ownwork;1;max
+24000621;cvB-AnionGap;Anion gap Ven;-50;50;Ownwork;1;max
+24000637;mvB-AnionGap;Anion gap Ven;-50;50;Ownwork;1;max
+20000300;aB-pH(PNA);Arterial pH;6,3;7,8;NielsenLancet2019;1;min
+24000330;P-ASAT;ASAT;0,1;800;Ownwork;1;max
+3000;AWPmean;AWPmean;-5;100;OwnWork;0;
+3300;AWPmin;AWPmin;-5;100;OwnWork;0;
+3210;AWPpause;AWPpause;-5;100;OwnWork;0;
+3110;AWPpeak(m);AWPpeak(m);-5;100;OwnWork;0;
+3200;AWPplateau;AWPplateau;-5;100;OwnWork;0;
+3500;C;Compliance;0;300;Ownwork;0;
+3501;Compl stat;ComplianceStatic;0;300;Ownwork;0;
+3750;BIPAPt1(s);AVPRt;0;60;Ownwork;0;
+3770;BIPAPt2(s);AVPRt;0;60;Ownwork;0;
+20001300;aB-BE(PNA);Base Excess Art;-50;50;Ownwork;1;min
+24000433;mvB-BE(PNA);Base Excess Ven;-50;50;Ownwork;1;min
+24000565;cvB-BE(PNA);Base Excess Ven;-50;50;Ownwork;1;min
+24000601;vB-BE(PNA);Base Excess Ven;-50;50;Ownwork;1;min
+24000604;vB-SBE(PNA);Base Excess Ven;-50;50;Ownwork;1;min
+24000663;cvB-ABE(PNA);Base Excess Ven;-50;50;Ownwork;1;min
+24000718;mvB-SBE(PNA);Base Excess Ven;-50;50;Ownwork;1;min
+24000290;aB-stHCO3;Bicarbonate (mmol/l);2;55;NielsenLancet2019;1;min
+24000420;aB-HCO3(PNA);Bicarbonate (mmol/l);2;55;NielsenLancet2019;1;min
+24000434;mvb-sHCO3;Bicarbonate (mmol/l);2;55;NielsenLancet2019;1;min
+24000597;vb-SBC(PNA);Bicarbonate (mmol/l);2;55;NielsenLancet2019;1;min
+24000618;cvb-SBC(PNA);Bicarbonate (mmol/l);2;55;NielsenLancet2019;1;min
+20004300;P-bilirubin;Bilirubin (umol/l);1;1000;NielsenLancet2019;1;max
+15003269;aB-Ca;Calcium-ion;0,8;2;Ownwork;1;
+24000516;aB-Ca (PNA);Calcium-ion;0,8;2;Ownwork;1;
+24000534;mvB-Ca(PNA);Calcium-ion;0,8;2;Ownwork;0;
+24000588;vB-Ca++(PNA);Calcium-ion;0,8;2;Ownwork;0;
+24000610;cvB-Ca++(PNA;Calcium-ion;0,8;2;Ownwork;0;
+24000695;P-Calcium;Calcium;1,5;4;Ownwork;0;
+15001650;Kcal tot;Calories Given;0;5000;OwnWork;0;
+15002384;Kcal Tot.;Calories Given;0;5000;OwnWork;0;
+30005320;IN Energi/c;Calories Given;0;5000;OwnWork;0;
+30015320;IN Energi/d;Calories Given;0;5000;OwnWork;0;
+15002784;Kcal ord;Calories Target;0;5000;OwnWork;0;
+24000439;P-Klorid;Chloride;90;120;Ownwork;0;
+24000522;aB-Klorid;Chloride;90;120;Ownwork;1;
+24000533;mvB-Cl-;Chloride;90;120;Ownwork;0;
+24000587;vB-Cl-(PNA);Chloride;90;120;Ownwork;0;
+24000609;cvB-Cl-(PNA);Chloride;90;120;Ownwork;0;
+20000600;P-Krea;Creatinine (mmol/l);0;1400;NielsenLancet2019;1;max
+24000712;aB-Krea(PNA);Creatinine (mmol/l);0;1400;NielsenLancet2019;1;max
+20002200;P-CRP;CRP;0;5000;OwnWork;1;max
+700;CVP(m);CVPm;-5;40;OwnWork;0;
+8060;CVP (m);CVPm;-5;40;OwnWork;0;
+24000544;P-Cystatin C;CystatinC;0,1;35;OwnWork;1;
+5647;UF hastighet;UF rate;0;1000;OwnWork;1;
+5674;Vätskebort p;UF rate;0;1000;OwnWork;1;
+1380;Blodflöde(s);Dialysis blood flow rate;0;2000;OwnWork;1;
+8140;Dialysflöde;Dialysis flow rate;0;5000;OwnWork;1;
+15002664;Dialysflöde.;Dialysis flow rate;0;5000;OwnWork;1;
+15002759;Dial.fl(s);Dialysis flow rate;0;5000;OwnWork;1;
+15003790;Dialysflöde,;Dialysis flow rate;0;5000;OwnWork;1;
+15003807;"Dialysflöde""""""""";Dialysis flow rate;0;5000;OwnWork;1;
+1460;Dialys in c;Dialysis in;-1000;3,00E+05;OwnWork;1;
+120;ARTd;Diastolic (Art);0;300;OwnWork;1;min
+620;ARTd;Diastolic (Art);0;300;OwnWork;1;min
+7090;ART_d(m);Diastolic (Art);0;300;OwnWork;1;min
+2200;ETCO2(m);EtCO2;0;15;OwnWork;1;
+24004400;P-Fibrinogen;Fibrinogen;0,1;15;OwnWork;1;min
+2010;FIO2(m);FiO2;21;100;NielsenLancet2019;1;fio2
+2000;FIO2(s);FiO2;21;100;NielsenLancet2019;1;fio2
+7220;O2(m);FiO2;21;100;NielsenLancet2019;1;fio2
+15001954;O2-konc.;FiO2;21;100;NielsenLancet2019;1;fio2
+15003956;O2 högflöde;FiO2;21;100;NielsenLancet2019;1;fio2
+10000315;SOFA GCS;sGCS;1;15;NielsenLancet2019;1;gcs
+30000300;GCS;GCS;3;15;NielsenLancet2019;1;gcs
+10000300;Ögon öppnas;GCSe;1;4;OwnWork;1;gcs
+10001026;Ögonöppning;GCSe;1;4;OwnWork;1;gcs
+10000200;Motorik;GCSm;1;6;OwnWork;1;gcs
+10000100;Verbalt Svar;GCSv;1;5;OwnWork;1;gcs
+20005110;P-Glukos;Glucose;0,2;200;Ownwork;0;min
+24000717;P-Gluk(PNA);Glucose;0,2;200;Ownwork;0;
+200;Hjärtfrekv;Heart rate;25;300;NielsenLancet2019;1;max
+4100;HRp;Heart rate;25;300;NielsenLancet2019;1;max
+7550;HR(SpO2);Heart rate;25;300;NielsenLancet2019;1;max
+10000450;Längd;Height (cm);50;220;OwnWork;1;
+15004144;Införd längd;Height (cm);50;220;OwnWork;1;
+20000100;B-EVF;Hematocrite;0,05;0,65;NielsenLancet2019;1;min
+24000543;aB-Hct(PNA);Hematocrite;0,05;0,65;NielsenLancet2019;1;min
+24000598;vB-Hct(PNA);Hematocrite;0,05;0,65;NielsenLancet2019;1;min
+20000900;B-Hb;Hemoglobin (g/l);10;300;OwnWork;1;min
+24000519;aB-Hb(PNA);Hemoglobin (g/l);10;300;OwnWork;1;min
+24000530;mvB-Hb(PNA);Hemoglobin (g/l);10;300;OwnWork;1;min
+24000593;vB-Hb(PNA);Hemoglobin (g/l);10;300;OwnWork;1;min
+24000614;cvB-Hb(PNA);Hemoglobin (g/l);10;300;OwnWork;1;min
+2900;I:E(s);IE;0;20;OwnWork;0;
+2910;I:E(m);IE;0;20;OwnWork;0;
+24000485;P-Laktat;Lactate (mmol/l);0,1;50;OwnWork;0;
+24000517;aB-Laktat;Lactate (mmol/l);0,1;50;OwnWork;1;max
+24000528;mvB-Laktat;Lactate (mmol/l);0,1;50;OwnWork;0;
+24000564;cvB-Lak(PNA);Lactate (mmol/l);0,1;50;OwnWork;1;max
+24000592;vB-Lak(PNA);Lactate (mmol/l);0,1;50;OwnWork;1;max
+24000190;P-LD;LD;1;800;Ownwork;0;
+110;ARTm;MAP (Art);0;300;NielsenLancet2019;1;min
+610;NIBPm;MAP (Art);0;300;NielsenLancet2019;1;min
+7080;ART_m(m);MAP (Art);0;300;NielsenLancet2019;1;min
+2500;VE(s);Minute Volume;0;30;OwnWork;0;
+2510;VE(m);Minute Volume;0;30;OwnWork;1;
+2520;VEinsp(m);Minute Volume;0;30;OwnWork;0;
+2530;VEspont;Minute Volume;0;30;OwnWork;0;
+24000570;S-NSE;NSE;0;250;OwnWork;0;
+9221;P0.1(m);P01;0;20;OwnWork;0;
+20001200;aB-pCO2(PNA);PaCO2 (kPa);1;30;NielsenLancet2019;1;max
+20000200;ab-pO2(PNA);PaO2 (kPa);4;90;NielsenLancet2019;1;pao2
+5643;TK över PEEP;PC over PEEP;0;40;OwnWork;0;
+2600;PEEP1(s);PEEP;0;30;OwnWork;0;max
+2610;PEEP1(m);PEEP;0;30;OwnWork;1;max
+2620;PEEP1(m);PEEP;0;30;OwnWork;1;max
+2652;PEEPtotal(m);PEEP;0;30;OwnWork;0;
+20004410;P-PK(INR);PK-INR;0,1;8;OwnWork;1;max
+20000500;P-Kalium;Potassium (mmol/l);0,9;15;NielsenLancet2019;1;max
+24000520;aB-K (PNA);Potassium (mmol/l);0,9;15;NielsenLancet2019;1;max
+24000531;mvB-K+(PNA);Potassium (mmol/l);0,9;15;NielsenLancet2019;1;max
+24000589;vB-K+(PNA);Potassium (mmol/l);0,9;15;NielsenLancet2019;1;max
+24000611;cvB-K+ (PNA);Potassium (mmol/l);0,9;15;NielsenLancet2019;1;max
+24000676;S-Prokalcito;Prokalc;0;200;OwnWork;1;
+3101;TU över PEEP;PS over PEEP;0;40;OwnWork;0;
+300;RR(m);Respiratory rate;3;100;NielsenLancet2019;1;max
+310;RRsp(m);Respiratory rate;3;100;NielsenLancet2019;1;max
+320;RRv(s);Respiratory rate;3;100;NielsenLancet2019;1;max
+340;RR(ecg);Respiratory rate;3;100;NielsenLancet2019;1;max
+24000569;S-S 100 B;S100B;0;10;OwnWork;0;
+4000;SpO2;Saturation;0;100;Ownwork;1;min
+4200;SpaO2(m);Saturation;0;100;OwnWork;1;min
+20000800;aB-SO2(PNA);Saturation;0;100;Ownwork;1;min
+20000400;P-Natrium;Sodium (mmol/l);95;175;NielsenLancet2019;1;
+24000521;aB-Na (PNA);Sodium (mmol/l);95;175;NielsenLancet2019;1;
+24000532;mvB-Na+(PNA);Sodium (mmol/l);95;175;NielsenLancet2019;1;
+24000590;vB-Na+(PNA);Sodium (mmol/l);95;175;NielsenLancet2019;1;
+24000612;cvB-Na+ (PNA);Sodium (mmol/l);95;175;NielsenLancet2019;1;
+100;ARTs;Systolic (Art);0;300;NielsenLancet2019;1;
+600;NIMPa;Systolic (Art);0;300;NielsenLancet2019;1;
+7070;ART_s(m);Systolic (Art);0;300;NielsenLancet2019;1;
+400;Temp perifer;Temperature;24;43;NielsenLancet2019;1;max
+420;Temp KAD;Temperature;24;43;NielsenLancet2019;1;max
+5683;TempSkin(m);Temperature;24;43;NielsenLancet2019;1;max
+5684;TempCore(m);Temperature;24;43;NielsenLancet2019;1;max
+7102;Temp axillär;Temperature;24;43;NielsenLancet2019;1;max
+7130;Temp öra;Temperature;24;43;NielsenLancet2019;1;max
+7500;Temp(s);Temperature;24;43;NielsenLancet2019;1;max
+20000110;B-TPK;Thrombocytes(10^9/l);0;5000;OwnWork;1;min
+2400;VT(s);Tidal Volume;0;2500;OwnWork;0;
+2410;VT(m);Tidal Volume;0;2500;OwnWork;0;
+2420;VTinsp;Tidal Volume;0;2500;OwnWork;0;
+2430;VTexp(m);Tidal Volume;0;2500;OwnWork;0;
+20004100;P-Urea;Urea (mmol/l);1;80;NielsenLancet2019;1;
+10010000;UT Urin/p;Urin output (ml);0;20000;NielsenLancet2019;1;sum
+10015000;Ut Urin/c;Urin output (ml);0;20000;NielsenLancet2019;0;
+30015000;UT Urin/d;Urin output (ml) (day);0;20000;NielsenLancet2019;0;
+10000400;Vikt;Weight (kg);15;500;OwnWork;1;mean
+15002666;Ankomstvikt;Weight (kg);15;500;OwnWork;1;mean
+15003298;Daglig vikt;Weight (kg);15;500;OwnWork;1;mean
+24000584;vB-pH(PNA);Venous pH;6,3;7,8;Ownwork;1;min
+24000607;cvB-pH(PNA);Venous pH;6,3;7,8;Ownwork;1;min
+20000700;B-LPK;White cell count (10^9 /l);0;1000;NielsenLancet2019;1;
+15001304;O2;O2(l/min);0;60;OwnWork;1;o2f
+30003400;PFI;PFI;0;60;OwnWork;1;pfi
+15002194;O2 Tabell;O2-table;0;200;OwnWork;1;o2t
+15001826;O2 admin;O2-method;0;60;OwnWork;1;o2m
+3825;Hamilton Mod ;Hamilton Mod ;0;128;OwnWork;1;HamiltMod
+9811;ServoU Mode;ServoU Mode;0;128;OwnWork;1;ServoUMod
+7950;V500 Mode;V500 Mode;0;128;OwnWork;1;V500Mod
+9599;RRT mode ;RRT mode ;0;128;OwnWork;1;RRTMod

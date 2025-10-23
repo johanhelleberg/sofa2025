@@ -1,0 +1,69 @@
+OldColName,NewColName,OldValue,NewValue
+Ankomstorsak,AdmissionReason,"",""
+Ankomstorsak,AdmissionReason,Medicinsk indikation,Medical indication
+Ankomstorsak,AdmissionReason,Hemmahörande här,Belongs here
+Ankomstorsak,AdmissionReason,Resursbrist hos avsändaren,Lack of resources at discharging Unit
+AnkomstVag,AdmittedFrom,"Operation (inkluderar interventionell radiologi, skopier mm)","Operating theatre (including interventional radiology, endoscopy)"
+AnkomstVag,AdmittedFrom,Akutmottagning,Emergency Department
+AnkomstVag,AdmittedFrom,Vårdavdelning,Ward
+AnkomstVag,AdmittedFrom,Postoperativ vård (på annan uppvakningsenhet),Postoperative Unit
+AnkomstVag,AdmittedFrom,Annan IVA,Other ICU
+AnkomstVag,AdmittedFrom,Annat sjukhus (ej IVA),Other Hospital
+AnkomstVag,AdmittedFrom,Konvertering från vårdtyp 'Postop' på samma IVA,Conversion from regular postoperative care in the same unit
+AnkomstVag,AdmittedFrom,Intermediärvård,Intermediary Care
+Avd,Unit,K Solna IVA,K Solna ICU
+Avd,Unit,K Solna TIVA,K Solna TICU
+Avd,Unit,K Huddinge IVA,K Huddinge ICU
+Avd,Unit,K Solna NIVA,K Solna NICU
+Behandlingstrategi,TreatmentStrategy,"",""
+Behandlingstrategi,TreatmentStrategy,Behandlingsbegränsningar,Limitations of Life-Sustaining Care
+Behandlingstrategi,TreatmentStrategy,Dokumenterat beslut saknas,No documented strategy
+Behandlingstrategi,TreatmentStrategy,Inga behandlingsbegränsningar,No Limitations of Life-Sustaining Care
+Behandlingstrategi,TreatmentStrategy,Inget beslut finns,No decision made
+Moderklinik,MotherClinic,"Öron, näs och halssjukvård",Otorhinolaryngologic
+Moderklinik,MotherClinic,Allmän kirurgi,General Surgery
+Moderklinik,MotherClinic,Kardiologi,Cardiology
+Moderklinik,MotherClinic,Thoraxkirurgi,Thoracic Surgery
+Moderklinik,MotherClinic,Ortopedisk kirurgi,Orthopedics
+Moderklinik,MotherClinic,Allmän internmedicin,General Internal Medicine
+Moderklinik,MotherClinic,Neurologi,Neurology
+Moderklinik,MotherClinic,Brännskadevård,Burns Unit
+Moderklinik,MotherClinic,Lungmedicin,Pulmonary Medicine
+Moderklinik,MotherClinic,Njurmedicin,Nephrology
+Moderklinik,MotherClinic,Endokrinologi,Endocrinology
+Moderklinik,MotherClinic,Neurokirurgi,Neurosurgery
+Moderklinik,MotherClinic,Infektionssjukvård,Infectious Disease Medicine
+Moderklinik,MotherClinic,Hud och könssjukvård,Dermatology
+Moderklinik,MotherClinic,Geriatrik/långvårdsmedicin,Geriatrics or Long-Term Care
+Moderklinik,MotherClinic,Reumatologi,Rheumatology
+Moderklinik,MotherClinic,Gynekologi,Gynecology
+Moderklinik,MotherClinic,"Onkologi, allmän",General Oncology
+Moderklinik,MotherClinic,Transplantationskirurgi,Transplant Surgery
+Moderklinik,MotherClinic,Hematologi,Hematology
+Moderklinik,MotherClinic,Barnmedicin,Pediatrics
+Moderklinik,MotherClinic,Urologi,Urology
+Moderklinik,MotherClinic,Anestesi och intensivvård,Anesthesia and Intensive Care
+Moderklinik,MotherClinic,Plastikkirurgi,Plastic Surgery
+Moderklinik,MotherClinic,"Onkologi, gynekologisk",Gynecologic Oncology
+Moderklinik,MotherClinic,Förlossningsvård,Obstetrics
+Moderklinik,MotherClinic,"",""
+Moderklinik,MotherClinic,Allmän psykiatri,General Psychiatry
+Moderklinik,MotherClinic,Medicinsk rehabilitering,Medical Rehabilitation
+Moderklinik,MotherClinic,Barnkirurgi,Pediatric Surgery
+Opererad,UnderwentSurgery,Ja-akut,Yes - emergency
+Opererad,UnderwentSurgery,Nej,No
+Opererad,UnderwentSurgery,Ja-elektivt,Yes - elective
+UtskrivenTill,DischargedTo,Vårdavdelning,Ward
+UtskrivenTill,DischargedTo,Avliden,Dead
+UtskrivenTill,DischargedTo,Annan IVA,Other ICU
+UtskrivenTill,DischargedTo,Annat sjukhus,Other Hospital
+UtskrivenTill,DischargedTo,Hem,Home
+UtskrivenTill,DischargedTo,Intermediärvård,Intermediary Care
+Utskrivningsorsak,DischargeReason,"",""
+Utskrivningsorsak,DischargeReason,Medicinsk indikation,Medical indication
+Utskrivningsorsak,DischargeReason,Hemmahörande där,Belongs there
+Utskrivningsorsak,DischargeReason,Resursbrist hos oss,Lack of resources
+VardResultat,Outcome,Levande,Alive
+VardResultat,Outcome,Avliden,Dead
+Vardtyp,CareType,IVA,ICU
+Vardtyp,CareType,TIVA,TICU
