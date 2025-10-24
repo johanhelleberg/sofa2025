@@ -331,12 +331,11 @@ if(FALSE){
 
 
 #Finally, we also have to setup some sepsis3 definitions
-suspected_infection_path = "P:\\GLUC-ICU\\users\\anna\\sepsis\\suspected_infection\\suspected_infection_times_from_cultures_and_pharma_abs_251022.csv"
-suspected_infection_path = "C:\\Users\\johhell\\OneDrive - KI.SE\\Dokument\\tte_prototyping\\sidata_unique_times_251022.csv"
+suspected_infection_path = "P:\\GLUC-ICU\\users\\johanh\\sofa2025\\datasets\\unique_suspected_infections_251024.csv"
 
 sidata = fread(suspected_infection_path)
-sidata[, suspected_infection_time2 := as.POSIXct(suspected_infection_time, tz = "UTC")]
-sidata[, suspected_infection_time := NULL]
+#sidata[, suspected_infection_time2 := as.POSIXct(suspected_infection_time, tz = "UTC")]
+#sidata[, suspected_infection_time := NULL]
 sidata[, dt := NULL]
 colnames(sidata)[2] = "suspected_infection_time"
 sidata[, suspected_infection_time2 := suspected_infection_time]
@@ -358,9 +357,7 @@ spell_master[, `:=` (suspected_infection_time = NULL,
 
 
 #SOFA at admission will be needed to be certain of sepsis
-sofa_1_path = "P:\\GLUC-ICU\\data\\processed\\2025-09\\sofa_scores\\sofa_hourly_imputed.csv"
-sofa_1_path = "P:\\GLUC-ICU\\data\\processed\\2025-09\\sofa_scores\\sofa_highres_15_min_2025_09_08_08_55_41.csv"
-sofa_1_path = "C:\\Users\\johhell\\OneDrive - KI.SE\\Dokument\\sofa2025\\sofa_hourly_with_imputations_and_studyID_251022.csv"
+sofa_1_path = "P:\\GLUC-ICU\\data\\processed\\2025-10\\sofa_hourly_with_imputations_and_studyID_251022.csv"
 sofa1 = fread(sofa_1_path, colClasses = c("character"))
 sofa1 = sofa1[, .SD[1], PatientID]
 sofa1[, `:=` (adm_time = as.POSIXct(gsub("T", " ", gsub("Z", "", adm_time)), tz = "UTC"),
@@ -412,6 +409,8 @@ spell_master = merge(spell_master,
 
 
 
+
+#fwrite(spell_master, file.choose())
 
 #now, setup the table 1
 library(table1)
@@ -523,5 +522,5 @@ t1_sepsis = table1(~Age +
                    , data = tdt#[adult_not_from_icu_spell_number == 1]
 )
 
-t1
+t1_sepsis
 fwrite(spell_master, file.choose())
