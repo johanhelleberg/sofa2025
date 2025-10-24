@@ -1,7 +1,10 @@
+library(pryr)
+
 #the function that actually calculates SOFA scores.
 calculate_sofa = function(interval_data, db, master, options, verbose = TRUE, key_column = NULL){
   if(TRUE){
     loglist = list()
+    starttime = Sys.time()
     
     #dummy data
     if (TRUE){
@@ -52,7 +55,7 @@ calculate_sofa = function(interval_data, db, master, options, verbose = TRUE, ke
     }
     
     pids = sort(unique(pids))
-    intkey = master[PatientID %in% pids, .(StudyID, spell_id, PatientID)]
+    intkey = master[PatientID %in% pids, .(StudyID, spell_id, PatientID, spell_start, spell_stop)]
     
     loglist[[length(loglist)+1]] = data.table(event = "prepared intervals and pid selection",
                                               time = Sys.time(),
@@ -64,7 +67,7 @@ calculate_sofa = function(interval_data, db, master, options, verbose = TRUE, ke
 
     
     
-    
+    prevtime = Sys.time()
     if(verbose){
       endtime = Sys.time()
       print(sofa_echo_time("Ticking away, the moments that make up a dull day", starttime, prevtime, endtime))
@@ -74,13 +77,6 @@ calculate_sofa = function(interval_data, db, master, options, verbose = TRUE, ke
     
     #Initialize intervals
     if(TRUE){
-      intervals = copy(interval_data)
-      
-      setkey(intervals, key(interval_data))
-      urval = unique(intervals$PatientID)#[1:100]
-      #for pasting into various queries
-      urval_sql = collapse_to_sql(urval)
-      #store the names for future use
       vartypes = dtReadTable(db, "vartypes")
       limits = fread(options$sofa$limits$codebook, sep = options$file$sep, dec = options$file$dec)[, .(VariableID, Min, Max, plausible_min_sign, plausible_min_numeric = as.numeric(plausible_min_numeric), plausible_max_sign, plausible_max_numeric= as.numeric(plausible_max_numeric))]
       
@@ -96,17 +92,15 @@ calculate_sofa = function(interval_data, db, master, options, verbose = TRUE, ke
       
     }
     
-    logdt = rbind(logdt, 
-                  data.table(event = "initialization", time = Sys.time(), memory_usage = mem_used()))
-    
-    #master
-    #sql = glue_sql("SELECT * FROM hv_master WHERE PatientID IN ({urval*})", .con = db)
-    
-    
+    loglist[[length(loglist)+1]] = data.table(event = "prepared limits",
+                                              time = Sys.time(),
+                                              memory_usage = pryr::mem_used())
     #get the weights
-    antrodata = get_weights(db, options, urval, master, vartypes, verbose)
-    logdt = rbind(logdt, 
-                  data.table(event = "weights", time = Sys.time(), memory_usage = mem_used()))
+    antrodata = get_weights(db, options, pids, intkey, vartypes, verbose)
+    
+    loglist[[length(loglist)+1]] = data.table(event = "computed weights",
+                                              time = Sys.time(),
+                                              memory_usage = pryr::mem_used())
     
     #get the resp settings
     ventilator_periods = calculate_ventilator_periods(intervals, db, options, limits, urval_sql, verbose)

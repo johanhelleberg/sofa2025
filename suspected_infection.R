@@ -213,7 +213,21 @@ setkey(sidata2, StudyID, suspected_infection_time)
 
 fwrite(sidata, file.choose())
 fwrite(sidata2, file.choose())
-fwrite(sidata2, "sidata_unique_times_251022.csv")
+
+
+#returning to computing intensity increases which may or may not be of interest later on
+#only those with a known intensity can be computed, of course
+intensity_key = copy(abx_master[Sepsisantibiotika == 1, .(ATC_kod, ab_intensity = as.numeric(ab_intensity))])
+intensity_key = unique(intensity_key[!is.na(ab_intensity)])
+setkey(intensity_key, ATC_kod)
+#we'll need an integer identification for this to work in the c++ call
+intensity_key[, atc_id := 1:.N]
+
+
+
+
+
+
 
 # 
 # 
