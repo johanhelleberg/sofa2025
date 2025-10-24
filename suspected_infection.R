@@ -221,12 +221,122 @@ intensity_key = copy(abx_master[Sepsisantibiotika == 1, .(ATC_kod, ab_intensity 
 intensity_key = unique(intensity_key[!is.na(ab_intensity)])
 setkey(intensity_key, ATC_kod)
 #we'll need an integer identification for this to work in the c++ call
+#intensity_key[, atc_id := 1:.N]
+
+
+abx_doseinterval = copy(ab_pharma)[ATC_kod %in% intensity_key$ATC_kod]
+setkey(abx_doseinterval, PatientID, CompID, OrderNumber)
+#compute median interval (in HOURS!) per order
+abx_doseinterval = abx_doseinterval[, .(median_interval = round(as.numeric(median(DateTime - shift(DateTime, 1L), na.rm = TRUE), units = "hours"))), .(PatientID, CompID, OrderNumber)]
+
+#get the ATCs back
+abx_doseinterval = merge(abx_doseinterval,
+                         unique(ab_pharma[ATC_kod %in% intensity_key$ATC_kod, .(PatientID, CompID, OrderNumber, ATC_kod)]),
+                         c("PatientID", "CompID", "OrderNumber"))
+
+#determine the common intervals for these antibiotics, per code
+abx_doseinterval = abx_doseinterval[!is.na(median_interval), .N, .(ATC_kod, median_interval)][order(ATC_kod, N, decreasing = TRUE)]
+abx_doseinterval = abx_doseinterval[order(ATC_kod, N, decreasing = TRUE)]
+
+#median interval for administrations 
+abx_doseinterval = abx_doseinterval[, .(median_interval, N = N, percent = N/sum(N)), .(ATC_kod)]
+abx_doseinterval = abx_doseinterval[, .SD[1], ATC_kod]
+
+intensity_key = merge(intensity_key,
+                      abx_doseinterval,
+                      "ATC_kod", 
+                      all.x = TRUE)
+
+
+#assume once-daily administration if nothing else specified
+intensity_key[is.na(median_interval), median_interval := 24]
+
+intensity_key[, `:=` (N = NULL,
+                      percent = NULL)]
+#we'll need an integer identification for this to work in the c++ call
+setkey(intensity_key, ATC_kod)
 intensity_key[, atc_id := 1:.N]
 
+#rebuild this dataset
+ab_combined = rbind(ab_admins_tc, ab_admins_ccc)
+ab_combined = unique(ab_combined[ATC_kod %in% intensity_key$ATC_kod])
+
+#get the id
+ab_combined = merge(
+  ab_combined,
+  intensity_key[, .(ATC_kod, atc_id)],
+  "ATC_kod"
+)
+
+#sort prior to the c++ call
+setkey(ab_combined, StudyID, DateTime)
+#the c++ call to determine the intensity at any given moment
+ab_intensity = level_at_time_rcpp(ab_combined$StudyID,
+                                  ab_combined$DateTime,
+                                  ab_combined$atc_id,
+                                  intensity_key$atc_id,
+                                  intensity_key$median_interval*3*3600, #back to seconds!
+                                  intensity_key$ab_intensity)
+setDT(ab_intensity)
+ab_combined = cbind(ab_combined, ab_intensity)
+
+ab_combined[, dt := as.numeric(DateTime - shift(DateTime, 1L), units = "secs"), StudyID]
 
 
+#compute escalations
+ab_combined[, `:=` (delta_level = level - shift(level, 1L),
+                    delta_count = count - shift(count, 1L)), StudyID]
+
+#N/A means no previous, so in that case deltas are just the current maximum
+ab_combined[is.na(delta_level), delta_level := level]
+ab_combined[is.na(delta_count), delta_count := count]
+
+#if more than 3 days gone since last antibiotic - assume this is new antibiotics regardless
+ab_combined[dt > 24*3*3600, `:=` (delta_level = level,
+                                  delta_count = count)]
+
+#now, compute escalations
+ab_combined[, escalation_level := 0L]
+ab_combined[delta_level > 0, escalation_level := 1L]
+
+ab_combined[, escalation_count := 0L]
+ab_combined[delta_count > 0, escalation_count := 1L]
+
+ab_combined[, escalation := fifelse(escalation_count == 1 | escalation_level == 1, 1,0)]
+
+#setup the escalation dataset
+#here's a set of escalations!
+ab_esc = ab_combined[escalation == 1, .(StudyID, DateTime, level, count, escalation_level, escalation_count)]
+
+#now, lockout the escalations by 72 hours
+setkey(ab_esc, StudyID, DateTime)
+ab_esc[, dt := as.numeric(DateTime - shift(DateTime, 1L), units = "secs"), StudyID]
+#72h lockout
+ab_esc = ab_esc[is.na(dt) | (!is.na(dt) & dt > 24*3*3600)]
+ab_esc[, dt := NULL]
+colnames(ab_esc)[2] = "escalation_time"
 
 
+#full merge, i.e. many-to-many matching
+escsidata = merge(blood_sample_times,
+                  ab_esc,
+                  "StudyID", 
+                  allow.cartesian = TRUE)
+
+escsidata[, culture_to_escalation := as.numeric(escalation_time - culture_time, units = "hours")]
+
+#options for suspected infection
+escsidata[culture_to_escalation %between% list(0,72), option_1 := 1L]
+escsidata[culture_to_escalation %between% list(-24,0), option_2 := 1L]
+escsidata[is.na(option_1), option_1 := 0L]
+escsidata[is.na(option_2), option_2 := 0L]
+escsidata[, suspected_infection_escalation := fifelse(option_1 == 1 | option_2 == 1, 1L, 0L)]
+escsidata[suspected_infection_escalation == 1, suspected_infection_time_escalation := pmin(culture_time, escalation_time)]
+escsidata[suspected_infection_escalation == 1 & escalation_level == 0]
+
+esidata = escsidata[!is.na(suspected_infection_time_escalation)]
+
+fwrite(esidata, file.choose())
 
 
 # 
